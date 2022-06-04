@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+
+struct cricket
+{
+    char player_name[100];
+    char team_name[100];
+    int batting_average;
+} s[5];
+
+void team_comp(struct cricket s[5], int n)
+{
+    int i,j;
+    struct cricket temp;
+    for (i=0;i<n;i++)
+    {
+        for (j=0;j<i;j++)
+        {
+            if (strcmp(s[j].team_name,s[i].team_name)>0)
+            {
+                temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+            }
+        }
+    }
+}
+
+void score_comp(struct cricket s[5], int n)
+{
+    int i,j;
+    struct cricket temp;
+    for (i=0;i<n;i++)
+    {
+        for (j=0;j<i;j++)
+        {
+            if ((s[j].batting_average<s[i].batting_average) && strcmp(s[j].team_name,s[i].team_name)==0)
+            {
+                temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+            }
+        }
+    }
+}
+
+int main()
+{
+    int n,i=0;
+    scanf("%d",&n);
+    for (i=0;i<n;i++)
+    {
+        scanf("%s %s %d",s[i].player_name,s[i].team_name,&s[i].batting_average);
+    }
+    team_comp(s,n);
+    score_comp(s,n);
+    for (i=0;i<n;i++)
+    {
+        printf("%s %s %d\n",s[i].player_name,s[i].team_name,s[i].batting_average);
+    }
+}
