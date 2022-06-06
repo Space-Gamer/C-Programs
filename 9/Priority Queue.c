@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
 struct node
@@ -61,17 +60,29 @@ void insert(int d, int p)
 
 void delete()
 {
-    if (head == NULL)
+    if (head == NULL) //Condition to check if the list is empty
     {
         printf("No Elements\n");
     }
+    else if (head->next == NULL) //Condition to check if the list has only 1 element and delete it
+    {
+        printf("deleted %d\n",head->data);
+        free(head);
+        head = NULL; //list made empty
+    }
     else
     {
-        prev = head; //Assigning first element to temperorary variable.
-        head = head->next; //Changing head to previously second element.
-        printf("deleted %d\n",prev->data); //Printing the element being deleted (Previously first element).
-        free(prev); //Releasing the memory of deleted element.
-        prev = NULL; //Resetting prev variable.
+        current = head;
+        while (current->next != NULL) //To iterate till the highest prority element
+        {
+            prev = current;
+            current = current->next;
+        }
+        prev->next = NULL; //Making the last second element as the current last.
+        printf("deleted %d\n",current->data);
+        free(current); //Free the memory of deleted element
+        current = NULL; //Resetting current
+        prev = NULL; //Resetting prev
     }
     return;
 }
