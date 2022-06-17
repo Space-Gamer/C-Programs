@@ -1,3 +1,7 @@
+/*
+Problem statement: To input a file name and create it. Also accept number of lines(n). Accept n line of inputs and write to the file created.
+*/
+
 #include <stdio.h>
 #include <string.h>
 
@@ -23,3 +27,26 @@ int main()
 	fclose(fptr);
 	printf("Writing to file successfull\n");
 }
+
+/*
+Input:
+Enter number of lines: 5
+Enter file name: test.txt
+
+Enter line 1: Hello World!
+
+Enter line 2: This is second line
+
+Enter line 3: abc cde
+
+Enter line 4: def efg fgh
+
+Enter line 5: End Of File z.
+
+Output:
+<Contents of test.txt>:
+Hello World!
+This is second line
+abc cde
+def efg fgh
+End Of File z.
