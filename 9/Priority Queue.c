@@ -1,3 +1,22 @@
+/*
+Problem Statement: Write functions for the following
+1)Initialization
+2)Enqueue
+3)Dequeue
+4)Display
+
+Input Format
+
+1. insert
+2. delete
+3. display
+4. Exit
+
+Output Format
+
+Display Appropriately
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,72 +36,68 @@ void insert(int d, int p)
     struct node *link = (struct node*) malloc(sizeof(struct node));
     link->data = d;
     link->priority = p;
-
+    
     if ((head==NULL))//If no element in list
-    {
+    {               
         link->next = NULL;
         head = link;
         return;
     }
-
     //if not empty
-    current = head;
-    while(current != NULL)
-    {
-        if (current->priority <= p) //Condition to check if the current node's priority is less than given data priority
-        {
-            if (prev==NULL) //If the element has to be inserted to the first place
-            {
-                link->next = head; //Previous first element's (now becoming second) address being linked to the new element (now becoming first)
-                head = link;
-            }
-            else
-            {
-                prev->next = link; //Changing previous element "next" variable(address of next element) to the one being added.
-                link->next = current; //Assigning the "next" variable of link(element being inserted) to the current node.
-            }
-            prev = NULL; //Resetting prev to NULL
-            current = NULL; //Resetting current to NULL
-            return;
-        }
-        prev = current;
-        current = current->next;
-        //Case when element has to be entered at last
-        if (current == NULL)
-        {
-            prev->next = link; //Linking previous element(previuosly last) element to link(element being inserted)
-            link->next = NULL;
-            prev = NULL; //Resetting prev to NULL
-            return;
-        }
-    }
+    link->next = head;
+    head = link;
 }
 
 void delete()
 {
-    if (head == NULL) //Condition to check if the list is empty
+    if (head == NULL)
     {
         printf("No Elements\n");
-    }
-    else if (head->next == NULL) //Condition to check if the list has only 1 element and delete it
-    {
-        printf("deleted %d\n",head->data);
-        free(head);
-        head = NULL; //list made empty
     }
     else
     {
         current = head;
-        while (current->next != NULL) //To iterate till the highest prority element
+        int maxp=-1, maxd=-1;
+        while (current != NULL)
         {
+            if (current->priority >= maxp)
+            {
+                if ((current->priority == maxp) && (current->data < maxd))
+                {
+                    maxd = current->data;
+                }
+                else if (current->priority != maxp)
+                {
+                    maxd = current->data;
+                }
+                maxp = current->priority;
+            }
+            current = current->next;
+        }
+        current = head;
+        while (current != NULL)
+        {
+            if (current->data == maxd && current->priority == maxp)
+            {
+                if (prev == NULL) //first element
+                {
+                    head = current->next;
+                    printf("deleted %d\n",current->data);
+                    free(current);
+                }
+                else
+                {
+                    prev->next = current->next;
+                    printf("deleted %d\n",current->data);
+                    free(current);
+                }
+                current = NULL; //Resetting prev
+                prev = NULL; //Resetting prev
+                return;
+            }
             prev = current;
             current = current->next;
         }
-        prev->next = NULL; //Making the last second element as the current last.
-        printf("deleted %d\n",current->data);
-        free(current); //Free the memory of deleted element
-        current = NULL; //Resetting current
-        prev = NULL; //Resetting prev
     }
     return;
 }
@@ -92,7 +107,6 @@ void display()
     if (head==NULL) //If list is empty
     {
         printf("No Elements\n");
-        exit(0);
         return;
     }
     current = head;
@@ -132,3 +146,90 @@ int main()
     }
     while(ch);
 }
+
+/*
+Test Case 1:
+Input:
+1
+10 1
+1
+200 2
+1
+30 3
+1
+40 0
+3
+2
+2
+3
+2
+2
+3
+4
+
+Output:
+40 0
+30 3
+200 2
+10 1
+deleted 30
+deleted 200
+40 0
+10 1
+deleted 10
+deleted 40
+No Elements
+
+Test Case 2:
+Input:
+1
+10 1
+1
+200 1
+1
+30 3
+3
+2
+3
+2
+2
+3
+4
+
+Output:
+30 3
+200 1
+10 1
+deleted 30
+200 1
+10 1
+deleted 10
+deleted 200
+No Elements
+
+
+Test Case 3:
+Input:
+3
+4
+
+Output:
+No Elements
+
+
+Test Case 4:
+Input:
+1
+100 1
+1
+200 5
+1
+300 3
+3
+4
+
+Output:
+300 3
+200 5
+100 1
+*/
