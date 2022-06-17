@@ -1,3 +1,7 @@
+/*
+Problem Statement: To read contents from two files and write the read data into another single file.
+*/
+
 #include <stdio.h>
 #include <string.h>
 
@@ -18,3 +22,15 @@ int main()
 	printf("Combined to file3.\n");
 	fclose(fptr3);	
 }
+
+/*
+Input:
+<read from file1.txt and file2.txt>
+Output:
+Contents of file1: Hi! Good Morning
+Contents of file2: Welcome to C
+Combined to file3.
+<file3.txt contents>:
+Hi! Good Morning
+Welcome to C
+*/
