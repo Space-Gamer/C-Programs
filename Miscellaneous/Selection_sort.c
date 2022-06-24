@@ -39,9 +39,12 @@ int main()
                 s=j;
             }
         }
-        int t=ar[s];
-        ar[s]=ar[i];
-        ar[i]=t;
+        if (s != i)
+        {
+            int t=ar[s];
+            ar[s]=ar[i];
+            ar[i]=t;
+        }
         // lstp(n,ar); // Uncomment to get the sorting mechanism after every n iterations
     }
     printf("Sorted list is: ");
