@@ -58,15 +58,14 @@ int main()
 /*
 Testcase 1
 Input
-
 5
 5
 4
 3
 2
 1
-Output
 
+Output
 1
 2
 3
