@@ -1,14 +1,17 @@
 /*
-Problem Statement: Implement bubble sort for an unsorted sequence of integers
+Problem Statement: Implement a binary search using callbacks
 
 Input Format
 
-n - input size
-N -unsorted input elements
+k - the size of the array
+N - input elements
+key - element to be searched
 
 Output Format
 
-N' - sorted elements
+print " FOUND" and with its position
+else
+print "NOT FOUND"
 */
 
 #include <stdio.h>
@@ -74,18 +77,15 @@ int main()
 /*
 Testcase 1
 Input
-
 5
-5
-4
-3
-2
 1
+2
+3
+4
+5
+3
+
 Output
-
-1
-2
+FOUND
 3
-4
-5
 */
