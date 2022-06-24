@@ -1,3 +1,16 @@
+/*
+Problem Statement: Implement bubble sort for an unsorted sequence of integers
+
+Input Format
+
+n - input size
+N -unsorted input elements
+
+Output Format
+
+N' - sorted elements
+*/
+
 #include <stdio.h>
 
 void bubsort(int arr[], int n)
@@ -57,3 +70,22 @@ int main()
         printf("%d",res);
     }
 }
+
+/*
+Testcase 1
+Input
+
+5
+5
+4
+3
+2
+1
+Output
+
+1
+2
+3
+4
+5
+*/
