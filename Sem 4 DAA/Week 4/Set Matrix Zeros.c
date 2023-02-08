@@ -26,7 +26,7 @@ Each of the m lines containing n numbers separated by space
 
 int main()
 {
-    int m,n,min,max,count;
+    int m,n,min,max,count=0;
     scanf("%d %d",&m,&n);
     int arr[m][n];
     int a[m],b[n];
@@ -40,7 +40,7 @@ int main()
 
     for (int i=0;i<m;i++)
     {
-        for (int j=0;j<m;j++)
+        for (int j=0;j<n;j++)
         {
             if (arr[i][j]==0)
             {
