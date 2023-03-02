@@ -23,16 +23,8 @@ int * min_max(int *arr,int low,int high)
     len = high-low+1;
     if (len<=2)
     {
-        if (arr[low]>arr[high])
-        {
-            min = arr[high];
-            max = arr[low];
-        }
-        else
-        {
-            max = arr[high];
-            min = arr[low];
-        }
+        min = arr[low]<arr[high]?arr[low]:arr[high];
+        max = arr[high]>arr[low]?arr[high]:arr[low];
     }
     else if (len%2==0)
     {
